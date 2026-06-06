@@ -1,0 +1,46 @@
+// prisma/schema.prisma
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model ShadowInventory {
+  id          String   @id @default(cuid())
+  sku         String   @unique
+  upc         String?
+  product     String
+  variantName String
+  shadowQty   Int      @default(0)
+  shopifyQty  Int      @default(0)
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now())
+
+  logs        InventoryLog[]
+}
+
+model InventoryLog {
+  id         String   @id @default(cuid())
+  sku        String
+  product    String
+  changeType String
+  delta      Int
+  before     Int
+  after      Int
+  note       String?
+  userEmail  String?
+  createdAt  DateTime @default(now())
+
+  variant    ShadowInventory @relation(fields: [sku], references: [sku])
+}
+
+
+model ProcessedOrder {
+  id          String   @id @default(cuid())
+  orderId     String   @unique          // Shopify order id
+  orderNumber String?
+  processedAt DateTime @default(now())
+}
