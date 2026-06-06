@@ -7,6 +7,7 @@ const NAV = [
   { href: "/inventory", label: "Shopify Inventory", desc: "Live store stock" },
   { href: "/shadow", label: "Warehouse", desc: "Your count" },
   { href: "/orders", label: "Orders", desc: "Shipping SLA" },
+  { href: "/logs", label: "Activity Log", desc: "Who changed what" },
 ];
 
 export default function Sidebar() {
