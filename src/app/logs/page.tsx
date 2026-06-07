@@ -7,7 +7,7 @@ type Log = {
   userEmail: string | null; createdAt: string;
 };
 
-const TYPE_STYLE = {
+const TYPE_STYLE: Record<string, { label: string; cls: string }> = {
   MANUAL_ADJUST: { label: "Manual edit", cls: "bg-blue-50 text-blue-700 ring-blue-600/20" },
   ORDER:         { label: "Order",       cls: "bg-purple-50 text-purple-700 ring-purple-600/20" },
   MATCH_SHOPIFY: { label: "Match Shopify",cls: "bg-emerald-50 text-emerald-700 ring-emerald-600/20" },
